@@ -9,12 +9,6 @@ if(isset($_SESSION['ADMIN_LOGIN']) && !empty($_SESSION['ADMIN_LOGIN'])){
 }
 
 ?>
-
-
-
-
-
-
 <!doctype html>
 <html class="no-js" lang="">
    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -52,7 +46,7 @@ if(isset($_SESSION['ADMIN_LOGIN']) && !empty($_SESSION['ADMIN_LOGIN'])){
                      <a href="" > User Master</a>
                   </li>
                   <li class="menu-item-has-children dropdown">
-                     <a href="#" > Contact Us</a>
+                     <a href="contactus.php" > Contact Us</a>
                   </li>
                </ul>
             </div>

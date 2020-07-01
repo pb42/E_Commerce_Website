@@ -1,32 +1,13 @@
 <?php
 require ('header.inc.php');
 $type="";
-if(isset($_GET['type']) && $_GET['type']!=""){
-    $type = get_safe_value($conn,$_GET['type']);
-    if($type=='status'){
-        $operation = get_safe_value($conn,$_GET['operation']);
-        $id = get_safe_value($conn,$_GET['id']);
-        if($operation=='active'){
-            $status='1';
-        }else{
-            $status='0';
-        }
-        $update_status = "update categories set status='$status' where id='$id'";
-    mysqli_query($conn,$update_status);
-    }
-    
-}
 if($type=='delete'){
         $id = get_safe_value($conn,$_GET['id']);
-        $delete_sql = "delete from categories where id='$id'";
+        $delete_sql = "delete from contact_us where id='$id'";
         mysqli_query($conn,$delete_sql);
-         
     }
-
-$sql = "select * from categories order by categories desc";
+$sql = "select * from contact_us order by id desc";
 $res = mysqli_query($conn,$sql);
-
-
 
 ?>         
 <div class="content pb-0">
@@ -36,7 +17,6 @@ $res = mysqli_query($conn,$sql);
                      <div class="card">
                         <div class="card-body">
                            <h4 class="box-title">Categories </h4>
-                           <h4 class="box-link"><a href="add_categories.php">Add Categories</a></h4>
                         </div>
                         <div class="card-body--">
                            <div class="table-stats order-table ov-h">
@@ -45,7 +25,11 @@ $res = mysqli_query($conn,$sql);
                                     <tr>
                                        <th class="serial">#</th>
                                        <th>ID</th>
-                                       <th>Categories</th>
+                                       <th>Name</th>
+                                       <th>Email</th>
+                                       <th>Mobile</th>
+                                       <th>Comment</th>
+                                       <th>Date</th>
                                        <th></th>
                                     </tr>
                                  </thead>
@@ -57,18 +41,13 @@ $res = mysqli_query($conn,$sql);
                                     <tr>
                                        <td class="serial"><?php echo $i ?></td>
                                        <td><?php echo $row['id']?></td>
-                                       <td> <span class="name"><?php echo $row['categories']?></span> </td>
-                                       <td>
-                                        <?php
-                                    if($row['status']==1){
-                                    echo "<a href='?type=status&operation=deactive&id=".$row['id']."'>Active</a>&nbsp;";
-                                    }else{
-                                    echo "<a href='?type=status&operation=active&id=".$row['id']."'>Deactive</a>&nbsp;";
-                                     }
-                                    echo "<a href='?type=delete&id=".$row['id']."'>Delete</a>";
-                                    echo "&nbsp<a href='add_categories.php?type=edit&id=".$row['id']."'>Edit</a>";
-                                          ?>
-                                       </td>
+                                       <td> <span class="name"><?php echo $row['name']?></span> </td>
+                                       <td> <span class="name"><?php echo $row['email']?></span> </td>
+                                       <td> <span class="name"><?php echo $row['mobile']?></span> </td>
+                                       <td> <span class="name"><?php echo $row['comment']?></span> </td>
+                                       <td> <span class="name"><?php echo $row['added_on']?></span> </td>
+                                       <td><?php echo "<a href='?type=delete&id=".$row['id']."'>Delete</a>";?></td>
+                                       
                                     </tr>
                                     <?php  } ?>
                                 </tbody>

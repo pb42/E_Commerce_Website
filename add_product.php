@@ -5,7 +5,7 @@ $msg='';
 //To add existing categories in the add_category field.
 if(isset($_GET['id']) && $_GET['id']!=''){  
     $id = get_safe_value($conn,$_GET['id']);
-    $res=mysqli_query($conn,"select * from categories where id='$id'");
+    $res=mysqli_query($conn,"select * from product where id='$id'");
     $check=mysqli_num_rows($res);
     if($check>0){
          $row=mysqli_fetch_assoc($res);
@@ -43,34 +43,6 @@ if(isset($_POST['submit'])){
 		die();
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ?>  
 <div class="content pb-0">
